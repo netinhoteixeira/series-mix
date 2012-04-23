@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2012 12:19:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="br.upis.ltpiv.turma352.series_mix.model.Temporada" table="temporada" catalog="series_mix">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="serie" class="br.upis.ltpiv.turma352.series_mix.model.Serie" fetch="select">
+            <column name="Serie" not-null="true">
+                <comment>S&#233;rie</comment>
+            </column>
+        </many-to-one>
+        <property name="numero" type="int">
+            <column name="Numero" not-null="true">
+                <comment>N&#250;mero</comment>
+            </column>
+        </property>
+        <property name="capa" type="binary">
+            <column name="Capa">
+                <comment>Capa (Somente JPEG)</comment>
+            </column>
+        </property>
+        <property name="trailer" type="string">
+            <column name="Trailer" length="350">
+                <comment>Trailer</comment>
+            </column>
+        </property>
+        <property name="final_" type="boolean">
+            <column name="Final" not-null="true">
+                <comment>Temporada Final? 0 - N&#227;o ; 1 - Sim</comment>
+            </column>
+        </property>
+        <set name="comentarios" inverse="true">
+            <key>
+                <column name="Temporada" not-null="true">
+                    <comment>Temporada</comment>
+                </column>
+            </key>
+            <one-to-many class="br.upis.ltpiv.turma352.series_mix.model.Comentario" />
+        </set>
+        <set name="episodios" inverse="true">
+            <key>
+                <column name="Temporada" not-null="true">
+                    <comment>Temporada</comment>
+                </column>
+            </key>
+            <one-to-many class="br.upis.ltpiv.turma352.series_mix.model.Episodio" />
+        </set>
+    </class>
+</hibernate-mapping>
