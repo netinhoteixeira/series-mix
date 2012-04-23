@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/04/2012 12:19:59 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="br.upis.ltpiv.turma352.series_mix.model.Serie" table="serie" catalog="series_mix">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="Nome" length="100" not-null="true">
+                <comment>Nome</comment>
+            </column>
+        </property>
+        <property name="sinopse" type="string">
+            <column name="Sinopse" length="65535" not-null="true">
+                <comment>Sinopse</comment>
+            </column>
+        </property>
+        <property name="duracao" type="time">
+            <column name="Duracao" length="8" not-null="true">
+                <comment>Dura&#231;&#227;o</comment>
+            </column>
+        </property>
+        <property name="situacao" type="string">
+            <column name="Situacao" length="50" not-null="true">
+                <comment>Situa&#231;&#227;o</comment>
+            </column>
+        </property>
+        <property name="lancamento" type="date">
+            <column name="Lancamento" length="10" not-null="true">
+                <comment>Data de Lan&#231;amento</comment>
+            </column>
+        </property>
+        <property name="cancelamento" type="date">
+            <column name="Cancelamento" length="10">
+                <comment>Data de Cancelamento</comment>
+            </column>
+        </property>
+        <set name="temporadas" inverse="true">
+            <key>
+                <column name="Serie" not-null="true">
+                    <comment>S&#233;rie</comment>
+                </column>
+            </key>
+            <one-to-many class="br.upis.ltpiv.turma352.series_mix.model.Temporada" />
+        </set>
+    </class>
+</hibernate-mapping>

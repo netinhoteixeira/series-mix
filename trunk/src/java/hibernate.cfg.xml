@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/series_mix</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+        <mapping resource="br/upis/ltpiv/turma352/series_mix/model/Comentario.hbm.xml"/>
+        <mapping resource="br/upis/ltpiv/turma352/series_mix/model/Usuario.hbm.xml"/>
+        <mapping resource="br/upis/ltpiv/turma352/series_mix/model/Temporada.hbm.xml"/>
+        <mapping resource="br/upis/ltpiv/turma352/series_mix/model/Serie.hbm.xml"/>
+        <mapping resource="br/upis/ltpiv/turma352/series_mix/model/Servidor.hbm.xml"/>
+        <mapping resource="br/upis/ltpiv/turma352/series_mix/model/Episodio.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
