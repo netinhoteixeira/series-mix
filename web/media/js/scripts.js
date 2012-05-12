@@ -31,7 +31,7 @@ $(document).ready(function(){
         }
     });
     
-    // Controla os ícones das redes sociais do rodapé
+    // Controla os hovers dos ícones
     function change_image(element, image){
         element.attr('src',image);
     }                
@@ -70,6 +70,20 @@ $(document).ready(function(){
             change_image($(this), 'media/image/frame/icon_rss.png'); 
         }
         );    
+    $('.search-result .delete').hover(
+        function(){
+            change_image($(this), 'media/image/frame/icon_delete-hover.png'); 
+        }, function(){
+            change_image($(this), 'media/image/frame/icon_delete.png'); 
+        }
+        );
+    $('.search-result .edit').hover(
+        function(){
+            change_image($(this), 'media/image/frame/icon_edit-hover.png'); 
+        }, function(){
+            change_image($(this), 'media/image/frame/icon_edit.png'); 
+        }
+        );
 
     // Controla as validações de formulário
     $('#form_validate input[type="reset"]').click(function() {

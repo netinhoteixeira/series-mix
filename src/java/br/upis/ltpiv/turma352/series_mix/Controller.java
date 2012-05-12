@@ -22,10 +22,12 @@ public class Controller extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //Iniciando a sessão
@@ -60,7 +62,6 @@ public class Controller extends HttpServlet {
                     message.setType("error");
                     message.setMessage(e.getMessage());
                     e.printStackTrace();
-
                 }
 
                 request.setAttribute("message", message);
@@ -107,16 +108,15 @@ public class Controller extends HttpServlet {
                 try {
 
                     ArrayList<UsuarioDTO> list = null;
-                    /*
-                     * String nome = "a"; String email = "@";
-                     *
-                     * if(!request.getParameter("msearch").equals(null)){ nome =
-                     * request.getParameter("msearch"); email =
-                     * request.getParameter("msearch");
-                    }
-                     */
+                    String nome = "";
+                    String email = "";
 
-                    list = new UsuarioBO().pesquisar(new UsuarioDTO());
+                    if (request.getParameter("msearch") != null) {
+                        nome = request.getParameter("msearch");
+                        email = request.getParameter("msearch");
+                    }
+
+                    list = new UsuarioBO().pesquisar(new UsuarioDTO(nome, email));
 
                     request.setAttribute("search", list);
 
@@ -142,9 +142,76 @@ public class Controller extends HttpServlet {
 
             case 5: //Alterar Usuário
 
+                try {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String nome = request.getParameter("mnome");
+                    String email = request.getParameter("memail");
+                    //String senha = request.getParameter("msenha");
+                    int nivel = function.nivelUsuario((String) request.getParameter("mnivel"));
+
+                    UsuarioDTO usuario = new UsuarioBO().alterar(new UsuarioDTO(id, nome, email, nivel));
+
+                    session.setAttribute("usuario", usuario);
+                    
+                    message.setType("success");
+                    message.setMessage("Usuário alterado com sucesso!");
+
+                } catch (Exception e) {
+
+                    message.setType("error");
+                    message.setMessage(e.getMessage());
+                    e.printStackTrace();
+
+                }
+
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("alterar_cadastro.jsp").forward(request, response);
+
                 break;
 
+
             case 6: //Excluir Usuário
+
+                try {
+
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    new UsuarioBO().excluir(new UsuarioDTO(id));
+
+                    message.setType("success");
+                    message.setMessage("Usuário excluído com sucesso!");
+
+                } catch (Exception e) {
+
+                    message.setType("error");
+                    message.setMessage(e.getMessage());
+                    e.printStackTrace();
+
+                }
+
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+
+                break;
+
+            case 7: //Recuperar dados a partir do ID do Usuário
+
+                try {
+
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    UsuarioDTO usuario = new UsuarioBO().pesquisarId(new UsuarioDTO(id));
+
+                    session.setAttribute("usuario", usuario);
+
+                } catch (Exception e) {
+
+                    message.setType("error");
+                    message.setMessage(e.getMessage());
+                    request.setAttribute("message", message);
+                    e.printStackTrace();
+
+                }
+
+                request.getRequestDispatcher("alterar_cadastro.jsp").forward(request, response);
 
                 break;
 

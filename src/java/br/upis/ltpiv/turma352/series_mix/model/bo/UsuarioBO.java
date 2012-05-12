@@ -14,15 +14,27 @@ public class UsuarioBO {
         this.UsuarioDAO = new UsuarioDAO();
     }
 
-    public void cadastrar(UsuarioDTO us) throws DatabaseException {
-        UsuarioDAO.cadastrarUsuario(us);
-    }
-
     public UsuarioDTO login(UsuarioDTO us) throws DatabaseException, ValidationException {
         return UsuarioDAO.loginUsuario(us);
     }
 
+    public void cadastrar(UsuarioDTO us) throws DatabaseException {
+        UsuarioDAO.cadastrarUsuario(us);
+    }
+
     public ArrayList<UsuarioDTO> pesquisar(UsuarioDTO us) throws DatabaseException, ValidationException {
         return UsuarioDAO.pesquisarUsuario(us);
+    }
+
+    public UsuarioDTO pesquisarId(UsuarioDTO us) throws DatabaseException {
+        return UsuarioDAO.pesquisarIdUsuario(us);
+    }
+
+    public UsuarioDTO alterar(UsuarioDTO us) throws DatabaseException {
+        return UsuarioDAO.alterarUsuario(us);
+    }
+
+    public void excluir(UsuarioDTO us) throws DatabaseException {
+        UsuarioDAO.excluirUsuario(us);
     }
 }

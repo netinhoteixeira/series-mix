@@ -42,6 +42,14 @@ public class UsuarioDTO {
         this.nivel = nivel;
     }
 
+    //Alteração
+    public UsuarioDTO(int codigo, String nome, String email, int nivel) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.email = email;
+        this.nivel = nivel;
+    }
+    
     //Resultado das Buscas
     public UsuarioDTO(int codigo, String nome, String email, String nmNivel) {
         this.codigo = codigo;
