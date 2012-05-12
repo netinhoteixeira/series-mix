@@ -35,9 +35,30 @@ a{
 }
 .wrapper{
     width:940px;
-    margin:0 auto;
+    margin:0 auto;    
 }
-
+.menu ul{
+    list-style:none;    
+}
+.menu li{
+    float:left;
+    display:inline;        
+}
+.menu a{
+    display:block;        
+    color:#F7B82A;
+    background-color:#303030;
+    font-family: 'webfont', Arial, Helvetica, sans-serif;            
+    text-decoration:none;
+    padding:0 15px;
+    height:40px;
+    line-height:40px;
+}
+.menu li a:hover, .menu .active a{
+    color:#E0040B;
+    background-color:#F1F1F1;
+}
+            
 /* Definições de Estilos de Cabeçalho */
 #header{
     margin-top:20px;
@@ -56,6 +77,19 @@ a{
         width:735px;
         height:141px;
     }
+        #nav .menu{
+            clear:both;
+            float:right;
+            margin-top:71px;    
+            height:40px;
+        }
+            #nav .menu a{
+                font-size:1em;
+                border-radius:5px 5px 0px 0px;    
+            }
+            #nav .menu li{
+                padding-left:1px;    
+            }
         #nav .search{
             float:right;
             margin-top:20px;
@@ -94,36 +128,6 @@ a{
                     margin-top:10px;
                     margin-right:5px;
                 }
-        #menu{
-            float:right;
-            clear:both;
-            margin-top:71px;
-            height:40px;    
-        }
-            #menu ul{
-                list-style:none;    
-            }
-            #menu li{
-                float:left;
-                display:inline;    
-                padding-left:1px;
-            }
-            #menu a{
-                display:block;
-                padding:0 15px;
-                height:40px;
-                line-height:40px;
-                color:#F7B82A;
-                background-color:#303030;
-                font-family: 'webfont', Arial, Helvetica, sans-serif;    
-                font-size:1.1em;
-                text-decoration:none;    
-                border-radius:5px 5px 0px 0px;
-            }
-            #menu li a:hover, #menu .active a{
-                color:#E0040B;
-                background-color:#F1F1F1;
-            }
 
 /* Definições de Estilos de Conteúdo */
 #container{
@@ -134,7 +138,7 @@ a{
     font-size:0.9em;
     min-height:500px;
     background-color:#F1F1F1;
-    border-radius:5px 0px 5px 5px;
+    border-radius:5px 0px 5px 0px;
 }
     #container a{
         color:#3FA5EA;
@@ -144,11 +148,11 @@ a{
     }
     #container h1{
         font-weight:normal;
-        font-size:1.2em;
+        font-size:1.1em;
         margin-bottom:10px;    
         color:#FFF;
         background-color:#E03B4B;
-        padding:7px 15px;    
+        padding:8px 15px;    
         border-radius:5px;
     }
     #container button, #container .button{
@@ -167,14 +171,21 @@ a{
         #container button a{
             color:#DDDBDB;    
         }
-    #container input, #container textarea{
+    #container input, #container textarea, #container select{
         font-family:Arial, Helvetica, sans-serif;
         border-radius:5px;
-        background-color:#F7B82A;
         font-size:0.9em;
     }
-    #container input{
+    #container input, #container select{
         height:30px;    
+    }
+    #container select{
+        min-width:200px;
+        padding-left:10px;            
+    }
+    #container option{
+        background-color:#ffffff;
+        vertical-align:middle;
     }
     
     #container #content{
@@ -186,73 +197,224 @@ a{
         margin-bottom:20px;
         background-color:#F1F1F1;
     }
-    
-    #container #sidebar{
-        float:left;
-        margin-right:20px;
-        height:auto;
-        width:210px;
-        margin:20px;    
-    }
-        #sidebar #submenu{
+        #content .separator{
+            clear:both;
             width:100%;
-            height:auto;    
-            min-height:100px;    
+            border-top:1px solid #DCDCDC;
+            margin-bottom:20px;
         }
-            #submenu .text{
-                padding-left:10px;
-                width:200px;    
+        /* Definições de estilos de mensagem */
+        #content .msg{
+            width:418px;
+            height:48px;
+            border-radius:5px;
+            margin-top:10px;
+            margin-bottom:20px;
+        }
+            #content .msg .txt{
+                float:left;
+                width:365px;
+                font-size:0.9em;
+                font-weight:bold;
+                margin-top:15px;
+                margin-left:15px;
             }
-            #submenu .button{
+            #content .msg .btn{
+                float:left;
+                width:28px;
+                margin-top:4px;
+                margin-left:5px;
+            }
+            #content .msg button{
+                border:none;
+                background-color:transparent;
+                width:21px;
+                height:21px;    
+                cursor:pointer;
+                background-repeat:no-repeat;
+            }
+                #content .msg.error{
+                    border:1px solid #FF8896;
+                    background-color:#FFC7CE;
+                }
+                #content .msg .txt.error{
+                    color:#E13D4C;
+                }
+                #content .msg .error button{
+                    background-image:url(../image/frame/icon_close-error.png);    
+                }
+                #content .msg .error button:hover{
+                    background-image:url(../image/frame/icon_close-error-hover.png);    
+                }                
+                #content .msg.success{
+                    border:1px solid #93D340;    
+                    background-color:#E0F2CB;
+                }
+                #content .msg .txt.success{
+                    color:#090;
+                }
+                #content .msg .success button{
+                    background-image:url(../image/frame/icon_close-success.png);    
+                }
+                #content .msg .success button:hover{
+                    background-image:url(../image/frame/icon_close-success-hover.png);    
+                }
+            
+        /* Definições de estilos de formulário */
+        #content div input, #content div select, #content div textarea{
+            margin-top:3px;
+            margin-bottom:3px;
+            border:1px solid #F7B82A;
+            background-color:#FFFFFF;
+        }
+        #content button, #content .button, #content .button-position input{
+            border:none !important;
+        }
+        #content .text{
+            padding-left:10px;
+            width:408px;
+        }    
+        #content form{
+            margin-top:10px;
+        }
+        #content form div{
+            margin-top:10px;
+        }
+            #content form div label{
+                font-weight:bold;
+                font-size:0.9em;
+            }
+        #content form .button-position{
+            text-align:right;
+            margin-top:20px;
+        }
+        #content form label.error{
+            color:#666;
+            font-weight:normal;
+            clear:both;
+            display:block;
+            padding-top:0px !important;
+        }
+        #content form input.error, #content form select.error, #content form textarea.error{
+            border-color:#E0040B;
+        }
+        #content form input.valid, #content form select.valid, #content form textarea.valid{
+            border-color:#090;
+        }
+        #content .box-check{
+            height:50px;
+        }
+            #content .box-check .check{
+                margin:0;
+                float:left;
+                border:0 !important;
+                background-color:#F0f0f0 !important;
+                margin-top:2px;
+                margin-right:10px;
+            }
+            #content .box-check label{
+                float:left;
+                padding-top:9px;
+            }
+            #content .box-check a:hover{
+                text-decoration:underline;
+            }
+        
+        /* Definições de estilos de página de busca e resultados */
+        #content #main table{
+            margin:0 auto;
+            width:100%;
+        }
+            #main .search-result{
+                margin-top:10px !important;
+                margin-bottom:20px !important;
+                border-collapse:collapse;
+                border:none;
+                font-size:0.9em;
+            }
+            #main .search-result img{
+                border:none;
+            }
+            #main .search-result a{
+                text-decoration:none;
+                color:#222121;
+            }
+            #main .search-result th{
+                height:40px;
+                background-color:#F7B82A;
+                min-width:40px;
+                border-right:1px solid #FFCF6E;
+                color:#E03B4B;
+                font-family:'webfont', Arial, Helvetica, sans-serif;
+                font-weight:normal;
+                font-size:1.2em;
+                overflow:hidden;
+                vertical-align: middle;
+                
+            }
+                #main .search-result .th-first{
+                    border-radius:5px 0px 0px 0px;
+                }
+                #main .search-result .th-last{
+                    border-radius:0px 5px 0px 0px;
+                    border-right:none;
+                }
+            #main .search-result td{
+                height:40px;
+                background-color:#F0F0F0;
+                min-width:40px;
+                border:1px solid #D2D2D2;
+                color:#212121;
+                text-align:center;
+                vertical-align: middle;
+            }
+        #main .search-details{
+            width:100%;
+        }
+            #main .search-details .button-position{
+                float:left;
+                width:40%;
+            }
+            #main .search-details .page{
+                width:60%;
                 float:right;
-                margin-top:5px;    
+                margin-top:5px;
             }
-            #submenu .link{
-                padding-top:5px;    
+            #main .search-details a{
+                text-decoration:none;
+            }
+        #main .search-text{
+            width:100%;
+        }
+            #main .search-text .search-inputs{
+                width:475px;
+                float:left;
+                margin-top:10px;
+                margin-bottom:20px;
+            }
+                #main .search-text .search-inputs input{
+                    width:95%;
+                }
+            #main .search-text .button-position{
+                float:right;
+                width:195px;
+                margin-top:10px;
+                margin-bottom:20px;
             }
 
-        #sidebar #series{
-            margin-top:20px;
-            margin-bottom:20px;            
-        }
-            #series ul{
-                list-style:none;
-            }
-            #series li{
-                height:20px;
-                line-height:20px;
-                vertical-align:middle;
-                padding-left:25px;
-                overflow:hidden;
-                background-image:url(../image/frame/bullet_list.png);
-                background-repeat:no-repeat;
-                background-position:left center;
-            }
-                #series li:hover{
-                    background-image:url(../image/frame/bullet_list-hover.png);    
-                }
-    #content .series-box{
-        clear:both;
-        width:100%;    
-    }
-    #content .box{
-        float:left;
-        width:210px;
-        text-align:center;
-        margin-right:20px;
-        margin-bottom:30px;    
-    }
+        /* Definições de estilos de posicionamento */
         #content .box img{
             border-radius:5px;
-            border:2px solid #DCDCDC;
-            height:277px;
-            width:210px;
+            border:2px solid #D2D2D2;
         }
-            #content .box img:hover{
-                border-color:#E03B4B;
-            }
+        #content .box img:hover{
+            border-color:#E03B4B;
+        }
         #content .box button{
             margin-top:10px;
+        }
+        #content .box a{
+            text-decoration:none;
         }
         #content .box h3{
             margin-top:5px;
@@ -263,35 +425,148 @@ a{
             margin-top:5px;
             font-size:1em;
         }
-    #content #page{
-        clear:both;
-        float:right;
-        padding-top:20px;
-        margin-bottom:10px;
-        margin-right:20px;
-        width:100%;
-        border-top:2px solid #DCDCDC;
-        text-align:right;
-    }
-        #page a{
-            background-color:#F7B82A;
-            padding:7px 15px;    
-            border-radius:5px;
-            text-decoration:none !important;
-            font-family: 'webfont', Arial, Helvetica, sans-serif;    
-            color:#222121;
-            font-size:0.8em;
+        #content .box-one{
+            width:670px;
         }
-            #page a:hover, #page .active, #page .current{
-                background-color:#E03B4B;    
-                color:#FFF;
+        #content .box-two{
+            width:670px;
+        }
+            #content .box-two .main{
+                float:left;
+                width:420px;
+                margin-right:20px;
             }
+            #content .box-two .sidebar{
+                float:left;
+                width:210px;
+                background-color:#F06;
+                height:20px;
+            }
+        #content .box-three{
+            clear:both;
+            width:100%;
+        }
+        #content .box-three .box{
+            float:left;
+            width:210px;
+            text-align:center;
+            margin-right:20px;
+            margin-bottom:30px;    
+        }
+            #content .box-three .box img{
+                height:277px;
+                width:210px;
+            }
+        /* Definições de estilos de paginação */
+        #content .page{
+            float:right;
+            margin-bottom:10px;
+            text-align:right;
+        }
+            #content .page .number{
+                font-family: 'webfont', Arial, Helvetica, sans-serif;
+                color:#222121;
+                font-size:0.9em;
+                margin-right:5px;
+                margin-top:5px;
+            }
+            #content .page a{
+                background-color:#F7B82A;
+                padding:7px 15px;
+                border-radius:5px;
+                text-decoration:none !important;
+                font-family: 'webfont', Arial, Helvetica, sans-serif;
+                color:#222121;
+                font-size:0.8em;
+            }
+                #content .page a:hover, #content .page .active, #content .page .current{
+                    background-color:#E03B4B;
+                    color:#FFF;
+                }
+    
+    #container #sidebar{
+        float:left;
+        margin-right:20px;
+        height:auto;
+        width:210px;
+        margin:20px;
+    }
+        #sidebar #panel{
+            width:100%;
+            height:auto;
+            min-height:100px;
+        }
+            #panel .text{
+                padding-left:10px;
+                width:198px;
+                border:none;
+                background-color:#F7B82A;
+            }
+            #panel .button{
+                float:right;
+                margin-top:5px;
+            }
+            #panel .link{
+                padding-top:5px;
+                font-size:0.9em;
+            }
+                #panel .link a{
+                    color:#E03B4B;
+                }
+                #panel .link a:hover{
+                    color:#E0040B;
+                }
+            #panel .check{
+                width: 13px;
+                height: 13px;
+                margin: 0;
+            }
+            #panel label{
+                font-size:0.9em;
+            }
+            #panel .remember{
+                padding-top:5px;
+                height:20px;
+                vertical-align:middle;
+                line-height:20px;
+            }
+
+        #sidebar .submenu{
+            margin-bottom:30px;
+        }
+            .submenu ul{
+                list-style:none;
+            }
+            .submenu li{
+                height:20px;
+                line-height:20px;
+                vertical-align:middle;
+                padding-left:25px;
+                overflow:hidden;
+                color:#3FA5EA;
+                background-image:url(../image/frame/bullet_list.png);
+                background-repeat:no-repeat;
+                background-position:left center;
+            }
+                .submenu li:hover{
+                    background-image:url(../image/frame/bullet_list-hover.png);
+                    text-decoration:underline;
+                }
     
 /* Definições de Estilos de Rodapé */
 #footer{
     clear:both;
-    height:270px;
-    font-size:0.8em;
-    margin-top:20px;
-    margin-bottom:20px;
-}            
+    
+}        
+    #footer .menu{
+        float:left;
+        height:40px;
+        padding-bottom:30px;
+    }
+        #footer .menu a{
+            font-size:0.9em;
+            border-radius:0px 0px 5px 5px;
+        }    
+        #footer .menu li{
+                padding-right:1px;
+            }

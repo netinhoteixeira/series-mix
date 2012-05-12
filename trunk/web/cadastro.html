@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Séries Mix | Um mix de diversão</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Aline Damasceno, Francisco Ernesto e Jady Pâmella" />
+        <meta name="description" content="Projeto de LTP-IV para a avaliação P3. Sistema gerenciador de website de download de séries desenvolvido em Java." />
+        <link rel="icon" href="media/image/frame/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="media/image/frame/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="media/css/style2.css" type="text/css" media="all" />
+        <script type="text/javascript" src="media/js/jquery.min.js"></script>
+        <script type="text/javascript" src="media/js/jquery.validate.js"></script>
+        <script type="text/javascript" src="media/js/scripts.js"></script>
+    </head>    
+    <body>
+        <div class="wrapper">
+            <!-- Início do Cabeçalho -->
+            <div id="header">
+                <div id="logo">
+                    <a href="#">
+                        <img src="media/image/frame/logo_header.png" alt="Logo Séries Mix" />
+                    </a>
+                </div>
+
+                <!-- Início do Menu Principal -->
+                <div id="nav">
+                    <div class="search">
+                        <form action="#" method="get">
+                            <p><input class="text" type="text" name="s" value="Pesquisar" /></p>
+                            <p><input class="button" type="submit" value="" /></p>
+                        </form>
+                        <p class="redes-sociais">
+                            <a href="#" title="Facebook">
+                                <img class="facebook" src="media/image/frame/icon_facebook.png" alt="Facebook" />
+                            </a>
+                            <a href="#" title="Twitter">
+                                <img class="twitter" src="media/image/frame/icon_twitter.png" alt="Twitter" />
+                            </a>
+                            <a href="#" title="Google Plus">
+                                <img class="gplus" src="media/image/frame/icon_gplus.png" alt="Google Plus" />
+                            </a>
+                            <a href="#" title="Youtube">
+                                <img class="youtube" src="media/image/frame/icon_youtube.png" alt="Youtube" />
+                            </a>
+                            <a href="#" title="Feed RSS">
+                                <img class="rss" src="media/image/frame/icon_rss.png" alt="Feed RSS" />
+                            </a>
+                        </p>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Séries</a></li>
+                            <li class="active"><a href="cadastro.html">Cadastre-se</a></li>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Cabeçalho -->
+
+            <!-- Início do Conteúdo -->
+            <div id="container">  
+                <div id="sidebar">
+                    <div id="submenu">
+                        <h1>Perfil Administrador</h1>
+                        <ul class="submenu">
+                            <li><a href="#">Minha Conta</a></li>
+                            <li>Usuário
+                                <ul>
+                                    <li><a href="#">Cadastrar</a></li>
+                                    <li><a href="#">Buscar</a></li>
+                                </ul>
+                            </li>    
+                            <li>Série
+                                <ul>
+                                    <li><a href="#">Cadastrar</a></li>
+                                    <li><a href="#">Buscar</a></li>
+                                </ul>
+                            </li>    
+                            <li>Temporada
+                                <ul>
+                                    <li><a href="#">Cadastrar</a></li>
+                                    <li><a href="#">Buscar</a></li>
+                                </ul>
+                            </li>    
+                            <li>Episódio
+                                <ul>
+                                    <li><a href="#">Cadastrar</a></li>
+                                    <li><a href="#">Buscar</a></li>
+                                </ul> 
+                            </li>           
+                            <li>Comentário
+                                <ul>
+                                    <li><a href="#">Moderar</a></li>
+                                </ul>
+                            </li> 
+                            <li><a href="#">Sair</a></li>      
+                        </ul>                    	
+                    </div>
+
+                    <div id="series">
+                        <h1>Mais Baixadas</h1>
+                        <ul>
+                            <li><a href="#">2 Broke Girls</a></li>
+                            <li><a href="#">A Gifted Man</a></li>
+                            <li><a href="#">Body Of Proof</a></li>
+                            <li><a href="#">Chuck</a></li>
+                            <li><a href="#">Covert Affairs</a></li>
+                            <li><a href="#">Dexter</a></li>
+                            <li><a href="#">Happily Divorced</a></li>
+                            <li><a href="#">Hot In Cleveland</a></li>
+                            <li><a href="#">How I Met Your Mother</a></li>
+                            <li><a href="#">I Hate My Teenage Daughter</a></li>
+                            <li><a href="#">New Girl</a></li>
+                            <li><a href="#">Nikita</a></li>
+                            <li><a href="#">One Tree Hill</a></li>
+                            <li><a href="#">Silk</a></li>
+                            <li><a href="#">Supernatural</a></li>
+                            <li><a href="#">Teen Wolf</a></li>
+                            <li><a href="#">The Big Bang Theory</a></li>
+                            <li><a href="#">The Secret Circle</a></li>
+                            <li><a href="#">The Walking Dead</a></li>
+                            <li><a href="#">Tood and the Book of Pure Evil</a></li>
+                            <li><a href="#">True Blood</a></li>
+                            <li><a href="#">Two and a Half Men</a></li>
+                            <li><a href="#">White Collar</a></li>
+                            <li><a href="#">Whitney</a></li>
+                            <li><a href="#">Work It</a></li>
+                       	</ul>
+                    </div>
+               	</div>
+                <div id="content"> 
+                    <div id="main">
+                        <div class="box-two">
+                            <h1>Cadastro de Usuário</h1>
+                            <div class="box main">   
+                                <div class="msg error">
+                                    <p class="txt error">Mensagem ao Usuário.</p>
+                                    <p class="btn error"><a href="#" title="Fechar"><button></button></a></p>
+                                </div>
+                                <div class="msg success">
+                                    <p class="txt success">Mensagem ao Usuário.</p>
+                                    <p class="btn success"><a href="#" title="Fechar"><button></button></a></p>
+                                </div>                             
+                                <form id="form_validate" action="#" method="post" enctype="multipart/form-data">
+                                    <div>
+                                        <label for="mnome">Nome</label><br />
+                                        <input class="text" id="mnome" type="text" name="mnome" /><br />
+                                    </div>        
+                                    <div>
+                                        <label for="memail">E-mail</label><br />
+                                        <input class="text" id="memail" type="text" name="memail" /><br />
+                                    </div>        
+                                    <div>
+                                        <label for="msenha">Senha</label><br />
+                                        <input class="text" id="msenha" type="password" name="msenha" /><br />
+                                    </div>        
+                                    <div>                                        
+                                        <label for="msenha2">Confirme a senha</label><br />
+                                        <input class="text" id="msenha2" type="password" name="msenha2" /><br />
+                                    </div>    
+                                    <div>
+                                        <label for="mnivel">Nível de acesso</label><br />
+                                        <select id="mnivel" name="mnivel">
+                                            <option value=""></option>
+                                            <option value="Administrador">Administrador</option>
+                                            <option value="Colaborador">Colaborador</option>
+                                            <option value="Usuário">Usuário</option>
+                                        </select>
+                                        <br />
+                                    </div>
+                                    <div class="box-check">
+                                        <input class="check" id="mtermos" type="checkbox" name="mtermos" />
+                                        <label for="mtermos">Li e concordo com os <a href="#">Termos de Uso</a></label>
+                                    </div>
+                                    <div class="button-position">
+                                        <input class="button" type="submit" value="Cadastrar" />
+                                        <input class="button" type="reset" value="Limpar" />
+                                    </div>
+                                </form>  
+                            </div>                              
+                        </div>
+                        <div class="box sidebar">
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Conteúdo -->
+
+            <!-- Início do Rodapé -->
+            <div id="footer">
+                <div class="menu">
+                    <ul>
+                        <li class="active"><a href="index.html">&copy; Séries Mix 2012 - Cultura Sem Fins Lucrativos</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Fim do Rodapé -->
+        </div>
+    </body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Séries Mix | Um mix de diversão</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="Aline Damasceno, Francisco Ernesto e Jady Pâmella" />
+        <meta name="description" content="Projeto de LTP-IV para a avaliação P3. Sistema gerenciador de website de download de séries desenvolvido em Java." />
+        <link rel="icon" href="media/image/frame/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="media/image/frame/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="media/css/style.css" type="text/css" media="all" />
+        <script type="text/javascript" src="media/js/jquery.js"></script>
+        <script type="text/javascript" src="media/js/scripts.js"></script>
+    </head>    
+    <body>
+        <div class="wrapper">
+            <!-- Início do Cabeçalho -->
+            <div id="header">
+                <div id="logo">
+                    <a href="#">
+                        <img src="media/image/frame/logo_header.png" alt="Logo Séries Mix" />
+                    </a>
+                </div>
+
+                <!-- Início do Menu Principal -->
+                <div id="nav">
+                    <div class="search">
+                        <form action="#" method="get">
+                            <p><input class="text" type="text" name="s" value="Pesquisar" /></p>
+                            <p><input class="button" type="submit" value="" /></p>
+                        </form>
+                        <p class="redes-sociais">
+                            <a href="#" title="Facebook">
+                                <img class="facebook" src="media/image/frame/icon_facebook.png" alt="Facebook" />
+                            </a>
+                            <a href="#" title="Twitter">
+                                <img class="twitter" src="media/image/frame/icon_twitter.png" alt="Twitter" />
+                            </a>
+                            <a href="#" title="Google Plus">
+                                <img class="gplus" src="media/image/frame/icon_gplus.png" alt="Google Plus" />
+                            </a>
+                            <a href="#" title="Youtube">
+                                <img class="youtube" src="media/image/frame/icon_youtube.png" alt="Youtube" />
+                            </a>
+                            <a href="#" title="Feed RSS">
+                                <img class="rss" src="media/image/frame/icon_rss.png" alt="Feed RSS" />
+                            </a>
+                        </p>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li><a href="#">Séries</a></li>
+                            <li><a href="cadastro.html">Cadastre-se</a></li>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Cabeçalho -->
+
+            <!-- Início do Conteúdo -->
+            <div id="container">  
+                <div id="sidebar">
+                    <div id="submenu">
+                        <h1>Efetue o Login</h1>
+                        <form action="#" method="post">
+                            <table>
+                                <tr><td colspan="2"><input class="text email" id="lemail" type="text" name="lemail" value="E-mail" /></td></tr>
+                                <tr><td colspan="2"><input class="text senha" id="lsenha" type="password" name="lsenha" value="Senha" /></td></tr>
+                                <tr><td colspan="2" class="remember"><input class="check" id="lremember" type="checkbox" name="lremember" value="1" checked="checked" />
+                                        <label for="lremember">Mantenha-me conectado</label></td></tr>
+                                <tr><td class="link"><a href="#">Esqueci minha senha</a><br /><a href="#">Não sou cadastrado</a></td>
+                                    <td><input class="button" type="submit" value="OK" /></td>
+                                </tr>
+                            </table>
+                        </form>                        	
+                    </div>
+
+                    <div id="series">
+                        <h1>Mais Baixadas</h1>
+                        <ul>
+                            <li><a href="#">2 Broke Girls</a></li>
+                            <li><a href="#">A Gifted Man</a></li>
+                            <li><a href="#">Body Of Proof</a></li>
+                            <li><a href="#">Chuck</a></li>
+                            <li><a href="#">Covert Affairs</a></li>
+                            <li><a href="#">Dexter</a></li>
+                            <li><a href="#">Happily Divorced</a></li>
+                            <li><a href="#">Hot In Cleveland</a></li>
+                            <li><a href="#">How I Met Your Mother</a></li>
+                            <li><a href="#">I Hate My Teenage Daughter</a></li>
+                            <li><a href="#">New Girl</a></li>
+                            <li><a href="#">Nikita</a></li>
+                            <li><a href="#">One Tree Hill</a></li>
+                            <li><a href="#">Silk</a></li>
+                            <li><a href="#">Supernatural</a></li>
+                            <li><a href="#">Teen Wolf</a></li>
+                            <li><a href="#">The Big Bang Theory</a></li>
+                            <li><a href="#">The Secret Circle</a></li>
+                            <li><a href="#">The Walking Dead</a></li>
+                            <li><a href="#">Tood and the Book of Pure Evil</a></li>
+                            <li><a href="#">True Blood</a></li>
+                            <li><a href="#">Two and a Half Men</a></li>
+                            <li><a href="#">White Collar</a></li>
+                            <li><a href="#">Whitney</a></li>
+                            <li><a href="#">Work It</a></li>
+                       	</ul>
+                    </div>
+               	</div>
+                <div id="content"> 
+                    <div id="main">
+                        <div class="box-three">
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/the-big-bang-theory.png" alt="The Big Bang Theory" /></a></p>
+                                <h3>The Big Bang Theory</h3>
+                                <h4>S05 E20</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/how-i-met-your-mother.png" alt="How I Met Your Mother" /></a></p>
+                                <h3>How I Met Your Mother</h3>
+                                <h4>S07 E19</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/covert-affairs.png" alt="Covert Affairs" /></a></p>
+                                <h3>Covert Affairs</h3>
+                                <h4>S02 E15</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                        </div>
+                        <div class="box-three">
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/nikita.png" alt="Nikita" /></a></p>
+                                <h3>Nikita</h3>
+                                <h4>S02 E22</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/sons-of-anarchy.png" alt="Sons of Anarchy" /></a></p>
+                                <h3>Sons of Anarchy</h3>
+                                <h4>S04 E10</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/body-of-proof.png" alt="Body of Proof" /></a></p>
+                                <h3>Body of Proof</h3>
+                                <h4>S02 E23</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                        </div>
+                        <div class="box-three">
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/happily-divorced.png" alt="Happily Divorced" /></a></p>
+                                <h3>Happily Divorced</h3>
+                                <h4>S02 E06</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/true-blood.png" alt="True Blood" /></a></p>
+                                <h3>True Blood</h3>
+                                <h4>S05 E01</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                            <div class="box">
+                                <p><a href="#"><img src="media/image/thumb/game-of-thrones.png" alt="Game of Thrones" /></a></p>
+                                <h3>Game of Thrones</h3>
+                                <h4>S02 E13</h4>
+                                <p><a href="#"><button>Download</button></a></p>
+                            </div>
+                        </div>
+                        <div id="page">
+                            <span class="page">Página 1 de 200</span>
+                            <span><a class="current" href="#">1</a></span>
+                            <span><a href="#">2</a></span>
+                            <span><a href="#">3</a></span>
+                            <span><a href="#">4</a></span>
+                            <span><a href="#">5</a></span>
+                            <span><a href="#">Próxima</a></span>
+                            <span><a href="#">Última</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Conteúdo -->
+
+            <!-- Início do Rodapé -->
+            <div id="footer">
+                <div class="menu">
+                    <ul>
+                        <li class="active"><a href="index.html">&copy; Séries Mix 2012 - Cultura Sem Fins Lucrativos</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Fim do Rodapé -->
+        </div>
+    </body>
+</html>
