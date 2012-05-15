@@ -6,6 +6,7 @@ import br.upis.ltpiv.turma352.series_mix.exception.database.InsertDatabaseExcept
 import br.upis.ltpiv.turma352.series_mix.exception.database.SelectDatabaseException;
 import br.upis.ltpiv.turma352.series_mix.exception.database.UpdateDatabaseException;
 import br.upis.ltpiv.turma352.series_mix.exception.database.DeleteDatabaseException;
+import br.upis.ltpiv.turma352.series_mix.exception.validation.EmailInvalidoException;
 import br.upis.ltpiv.turma352.series_mix.exception.validation.LoginInvalidoException;
 import br.upis.ltpiv.turma352.series_mix.exception.validation.ValidationException;
 import br.upis.ltpiv.turma352.series_mix.model.dto.UsuarioDTO;
@@ -14,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class UsuarioDAO {
 
@@ -67,18 +69,32 @@ public class UsuarioDAO {
         return user;
     }
 
-    public UsuarioDTO cadastrarUsuario(UsuarioDTO us) throws DatabaseException {
+    public UsuarioDTO cadastrarUsuario(UsuarioDTO us) throws DatabaseException, EmailInvalidoException {
 
-        this.sql = "INSERT INTO usuario(usuario_nivel, usuario_nome, usuario_email, usuario_senha, usuario_data_cadastro) VALUES(?,?,?,MD5(?),SYSDATE())";
+        this.sql = "SELECT COUNT(*) FROM usuario WHERE (usuario_nome = ?) AND (usuario_email = ?)";
 
         try {
             this.ps = this.con.prepareStatement(sql);
-            this.ps.setInt(1, us.getNivel());
-            this.ps.setString(2, us.getNome());
-            this.ps.setString(3, us.getEmail());
-            this.ps.setString(4, us.getSenha());
+            this.ps.setString(1, us.getNome());
+            this.ps.setString(2, us.getEmail());
 
-            this.ps.execute();
+            this.res = this.ps.executeQuery();
+            res.next();
+
+            if (res.getInt(1) > 0) {
+
+                this.sql = "INSERT INTO usuario(usuario_nivel, usuario_nome, usuario_email, usuario_senha, usuario_data_cadastro) VALUES(?,?,?,MD5(?),SYSDATE())";
+
+                this.ps = this.con.prepareStatement(sql);
+                this.ps.setInt(1, us.getNivel());
+                this.ps.setString(2, us.getNome());
+                this.ps.setString(3, us.getEmail());
+                this.ps.setString(4, us.getSenha());
+
+                this.ps.execute();
+            } else {
+                throw new EmailInvalidoException("E-mail ou nome de usuário já cadastrado.");
+            }
         } catch (SQLException e) {
             throw new InsertDatabaseException("Não foi possível cadastrar o usuário.");
         } finally {
@@ -128,7 +144,6 @@ public class UsuarioDAO {
 
         this.sql = "SELECT usuario_nome, usuario_email, usuario_nivel FROM usuario "
                 + "WHERE (usuario_codigo = ?)";
-        System.out.println(this.sql);
 
         try {
             this.ps = this.con.prepareStatement(sql);
@@ -151,19 +166,34 @@ public class UsuarioDAO {
         return us;
     }
 
-    public UsuarioDTO alterarUsuario(UsuarioDTO us) throws DatabaseException {
+    public UsuarioDTO alterarUsuario(UsuarioDTO us) throws DatabaseException, EmailInvalidoException {
 
-        this.sql = "UPDATE usuario(usuario_nivel, usuario_nome, usuario_email) "
-                + "SET VALUES(?,?,?) WHERE usuario_codigo = ?";
-
+        this.sql = "SELECT COUNT(*) FROM usuario WHERE (usuario_nome = ?) AND (usuario_email = ?) AND (usuario_codigo <> ?)";
+        System.out.println(this.sql);
         try {
             this.ps = this.con.prepareStatement(sql);
-            this.ps.setInt(1, us.getNivel());
-            this.ps.setString(2, us.getNome());
-            this.ps.setString(3, us.getEmail());
-            this.ps.setInt(4, us.getCodigo());
+            this.ps.setString(1, us.getNome());
+            this.ps.setString(2, us.getEmail());
+            this.ps.setInt(3, us.getCodigo());
 
-            this.ps.execute();
+            this.res = this.ps.executeQuery();
+            res.next();
+
+            if (res.getInt(1) > 0) {
+
+                this.sql = "UPDATE usuario SET usuario_nivel = ?, usuario_nome = ?, usuario_email = ? "
+                        + "WHERE usuario_codigo = ?";
+
+                this.ps = this.con.prepareStatement(sql);
+                this.ps.setInt(1, us.getNivel());
+                this.ps.setString(2, us.getNome());
+                this.ps.setString(3, us.getEmail());
+                this.ps.setInt(4, us.getCodigo());
+
+                this.ps.execute();
+            } else {
+                throw new EmailInvalidoException("E-mail ou nome de usuário já cadastrado.");
+            }
         } catch (SQLException e) {
             throw new UpdateDatabaseException("Não foi possível alterar o usuário.");
         } finally {

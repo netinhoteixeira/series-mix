@@ -1,6 +1,7 @@
 package br.upis.ltpiv.turma352.series_mix.model.bo;
 
 import br.upis.ltpiv.turma352.series_mix.exception.database.DatabaseException;
+import br.upis.ltpiv.turma352.series_mix.exception.validation.EmailInvalidoException;
 import br.upis.ltpiv.turma352.series_mix.exception.validation.ValidationException;
 import br.upis.ltpiv.turma352.series_mix.model.dao.UsuarioDAO;
 import br.upis.ltpiv.turma352.series_mix.model.dto.UsuarioDTO;
@@ -18,7 +19,7 @@ public class UsuarioBO {
         return UsuarioDAO.loginUsuario(us);
     }
 
-    public void cadastrar(UsuarioDTO us) throws DatabaseException {
+    public void cadastrar(UsuarioDTO us) throws DatabaseException, EmailInvalidoException {
         UsuarioDAO.cadastrarUsuario(us);
     }
 
@@ -30,7 +31,7 @@ public class UsuarioBO {
         return UsuarioDAO.pesquisarIdUsuario(us);
     }
 
-    public UsuarioDTO alterar(UsuarioDTO us) throws DatabaseException {
+    public UsuarioDTO alterar(UsuarioDTO us) throws DatabaseException, EmailInvalidoException {
         return UsuarioDAO.alterarUsuario(us);
     }
 

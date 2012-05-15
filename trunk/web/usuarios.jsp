@@ -56,7 +56,7 @@
                     %>
                     <tr>
                         <td>${usuario.codigo}</td>
-                        <td><a href="controller?op=5&id=${usuario.codigo}">${usuario.nome}</a></td>
+                        <td><a href="controller?op=7&id=${usuario.codigo}">${usuario.nome}</a></td>
                         <td>${usuario.email}</td>
                         <td>${usuario.nmNivel}</td>
                         <td>
@@ -92,6 +92,5 @@
 
         </div>
     </div>
-</div>
 </div>
 <jsp:include page="/WEB-INF/layout/footer.jsp" />
