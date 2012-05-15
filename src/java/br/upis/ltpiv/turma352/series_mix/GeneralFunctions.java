@@ -10,7 +10,7 @@ public class GeneralFunctions {
             return 1;
         } else if (nomeNivel.equals("Colaborador")) {
             return 2;
-        } else if (nomeNivel.equals("Usuário")) {
+        } else if (nomeNivel.equals("Usuario")) {
             return 3;
         } else {
             throw new NivelUsuarioInvalidoException("Nível de usuário inválido!");

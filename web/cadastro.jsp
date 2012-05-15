@@ -42,7 +42,7 @@
                             <option value=""></option>
                             <option value="Administrador">Administrador</option>
                             <option value="Colaborador">Colaborador</option>
-                            <option value="Usuário">Usuário</option>
+                            <option value="Usuario">Usuário</option>
                         </select>
                         <br />
                     </div>

@@ -18,18 +18,18 @@
                     <p class="btn <%= msg.getType()%>"><a href="#" title="Fechar"><button></button></a></p>
                 </div>
                 <%
-                } else {
-                    UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuario");
-                    pageContext.setAttribute("usuario", usuario);
+                    }
+                        UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuario");
+                        pageContext.setAttribute("usuario", usuario);
                 %>
                 <form id="form_validate" action="controller" method="post">                        
                     <div>
                         <label for="mnome">Nome</label><br />
-                        <input class="text" id="mnome" type="text" name="mnome" value="${usuario.usuario_nome}" /><br />
+                        <input class="text" id="mnome" type="text" name="mnome" value="${usuario.nome}" /><br />
                     </div> 
                     <div>
                         <label for="memail">E-mail</label><br />
-                        <input class="text" id="memail" type="text" name="memail" value="${usuario.usuario_email}" /><br />
+                        <input class="text" id="memail" type="text" name="memail" value="${usuario.email}" /><br />
                     </div>
                     <!--<div>
                         <label for="msenha">Senha</label><br />
@@ -45,18 +45,17 @@
                             <option value=""></option>
                             <option value="Administrador">Administrador</option>
                             <option value="Colaborador">Colaborador</option>
-                            <option value="Usuário">Usuário</option>
+                            <option value="Usuario">Usuário</option>
                         </select>
                         <br />
                     </div>
                     <div class="button-position">
                         <input type="hidden" value="5" name="op" />
-                        <input type="hidden" name="id" value="${usuario.codigo_usuario}" />
+                        <input type="hidden" name="id" value="${usuario.codigo}" />
                         <input class="button" type="submit" value="Alterar" />
                         <input class="button" type="reset" value="Resetar" />
                     </div>
                 </form>
-                <% }%>
             </div>
         </div>
         <div class="box sidebar">
