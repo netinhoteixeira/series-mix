@@ -25,6 +25,9 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("utf-8");
+
         // Iniciando a sessão
         HttpSession session = request.getSession(true);
 
@@ -116,7 +119,7 @@ public class Controller extends HttpServlet {
                     request.setAttribute("message", message);
                 }
 
-                request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+                request.getRequestDispatcher("usuarioListar.jsp").forward(request, response);
                 break;
 
             case 5: // Alterar Usuário
@@ -125,7 +128,7 @@ public class Controller extends HttpServlet {
                     usuario.setId(Integer.parseInt(request.getParameter("id")));
                     usuario.setNome(request.getParameter("nome"));
                     usuario.setEmail(request.getParameter("email"));
-                    usuario.getNivel().setId(Integer.parseInt(request.getParameter("id")));
+                    usuario.getNivel().setId(Integer.parseInt(request.getParameter("nivel")));
 
                     UsuarioBo usuarioBo = new UsuarioBo();
                     usuario = usuarioBo.alterar(usuario);
@@ -153,13 +156,16 @@ public class Controller extends HttpServlet {
 
                     message.setType("success");
                     message.setMessage("Usuário excluído com sucesso!");
+
+                    ArrayList<UsuarioDto> lista = new UsuarioBo().listar();
+                    request.setAttribute("search", lista);
                 } catch (Exception e) {
                     message.setType("error");
                     message.setMessage(e.getMessage());
                 }
 
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+                request.getRequestDispatcher("usuarioListar.jsp").forward(request, response);
                 break;
 
             case 7: // Recuperar dados a partir do ID do Usuário
