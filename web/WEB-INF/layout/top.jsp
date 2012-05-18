@@ -54,7 +54,7 @@
                         <ul>
                             <li <% if (pg.getId() == 1) {%> class="active" <% }%> ><a href="index.jsp">Home</a></li>
                             <li <% if (pg.getId() == 2) {%> class="active" <% }%> ><a href="series.jsp">Séries</a></li>
-                            <li <% if (pg.getId() == 3) {%> class="active" <% }%> ><a href="cadastro.jsp">Cadastre-se</a></li>
+                            <li <% if (pg.getId() == 3) {%> class="active" <% }%> ><a href="usuarioCadastro.jsp">Cadastre-se</a></li>
                             <li <% if (pg.getId() == 4) {%> class="active" <% }%> ><a href="termos_uso.jsp">Termos de Uso</a></li>
                             <li <% if (pg.getId() == 5) {%> class="active" <% }%> ><a href="contato.jsp">Contato</a></li>
                         </ul>
