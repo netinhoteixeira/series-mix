@@ -59,6 +59,16 @@ CREATE  TABLE IF NOT EXISTS `series_mix`.`Episodio` (
 
 
 -- -----------------------------------------------------
+-- Table `series_mix`.`Nivel`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `series_mix`.`Nivel` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `Nome` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `series_mix`.`Usuario`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `series_mix`.`Usuario` (
@@ -66,9 +76,15 @@ CREATE  TABLE IF NOT EXISTS `series_mix`.`Usuario` (
   `Nome` VARCHAR(100) NOT NULL COMMENT 'Nome' ,
   `Email` VARCHAR(121) NOT NULL COMMENT 'E-mail' ,
   `Senha` VARCHAR(50) NOT NULL COMMENT 'Senha' ,
-  `Nivel` INT NOT NULL COMMENT 'Nível: 0 -  Administrador; 1 - Usuário; 2 - Visitante' ,
+  `Nivel` INT NOT NULL ,
   `Cadastro` DATE NOT NULL COMMENT 'Data de Cadastro' ,
-  PRIMARY KEY (`id`) );
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_Usuario_Nivel` (`Nivel` ASC) ,
+  CONSTRAINT `fk_Usuario_Nivel`
+    FOREIGN KEY (`Nivel` )
+    REFERENCES `series_mix`.`Nivel` (`id` )
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE);
 
 
 -- -----------------------------------------------------
@@ -124,3 +140,24 @@ CREATE  TABLE IF NOT EXISTS `series_mix`.`Servidor` (
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `series_mix`.`Nivel`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `series_mix`;
+INSERT INTO `series_mix`.`Nivel` (`id`, `Nome`) VALUES (1, 'Administrador');
+INSERT INTO `series_mix`.`Nivel` (`id`, `Nome`) VALUES (2, 'Colaborador');
+INSERT INTO `series_mix`.`Nivel` (`id`, `Nome`) VALUES (3, 'Usuário');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `series_mix`.`Usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `series_mix`;
+INSERT INTO `series_mix`.`Usuario` (`id`, `Nome`, `Email`, `Senha`, `Nivel`, `Cadastro`) VALUES (1, 'Francisco Ernesto Teixeira', 'fco.ernesto@gmail.com', '12345', 1, '2012-04-23');
+INSERT INTO `series_mix`.`Usuario` (`id`, `Nome`, `Email`, `Senha`, `Nivel`, `Cadastro`) VALUES (2, 'Jady Pâmella Barbacena', 'jadypbs@gmail.com', '12345', 1, '2012-04-23');
+
+COMMIT;

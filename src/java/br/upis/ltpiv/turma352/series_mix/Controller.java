@@ -1,7 +1,7 @@
 package br.upis.ltpiv.turma352.series_mix;
 
-import br.upis.ltpiv.turma352.series_mix.model.bo.UsuarioBO;
-import br.upis.ltpiv.turma352.series_mix.model.dto.UsuarioDTO;
+import br.upis.ltpiv.turma352.series_mix.model.bo.UsuarioBo;
+import br.upis.ltpiv.turma352.series_mix.model.dto.UsuarioDto;
 import br.upis.ltpiv.turma352.series_mix.model.vo.MessageVO;
 import br.upis.ltpiv.turma352.series_mix.session.Login;
 import java.io.IOException;
@@ -14,10 +14,6 @@ import javax.servlet.http.HttpSession;
 
 public class Controller extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-    //Instanciando o objeto para uso das funções gerais
-    GeneralFunctions function = new GeneralFunctions();
-
     public Controller() {
         super();
     }
@@ -29,194 +25,164 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //Iniciando a sessão
+        // Iniciando a sessão
         HttpSession session = request.getSession(true);
 
-        //Instanciando a mensagem de retorno
+        // Instanciando a mensagem de retorno
         MessageVO message = new MessageVO();
 
-        //Recebendo o valor da operação a ser efetuada
+        // Recebendo o valor da operação a ser efetuada
         int op = Integer.parseInt(request.getParameter("op"));
 
         switch (op) {
-
-            case 1: //Login
-
+            case 1: // Login
                 try {
                     String email = request.getParameter("lemail");
                     String senha = request.getParameter("lsenha");
-                    //String remember = request.getParameter("lremember");
 
-                    UsuarioDTO us = new UsuarioBO().login(new UsuarioDTO(email, senha));
+                    UsuarioDto usuario = new UsuarioDto();
+                    usuario.setEmail(email);
+                    usuario.setSenha(senha);
 
-                    Login login = new Login(us.getCodigo(), us.getNivel(), us.getNome(), us.getEmail());
+                    UsuarioBo usuarioBo = new UsuarioBo();
+                    usuario = usuarioBo.login(usuario);
 
+                    Login login = new Login();
+                    login.setId(usuario.getId());
+                    login.setNome(usuario.getNome());
+                    login.setEmail(usuario.getEmail());
+                    login.setNivel(usuario.getNivel());
                     session.setAttribute("login", login);
 
                     message.setType("success");
-                    message.setMessage("Bem-vindo " + us.getNome());
-
+                    message.setMessage("Bem-vindo " + usuario.getNome());
                 } catch (Exception e) {
-
                     message.setType("error");
                     message.setMessage(e.getMessage());
-                    e.printStackTrace();
                 }
 
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-
                 break;
 
-            case 2: //Logoff
+            case 2: // Logoff
                 session.invalidate();
                 response.sendRedirect("index.jsp");
                 break;
 
-            case 3: //Cadastrar Usuário
-
+            case 3: // Cadastrar Usuário
                 try {
+                    // Recebendo os parâmetros inseridos pelo usuário
+                    UsuarioDto usuario = new UsuarioDto();
+                    usuario.setNome(request.getParameter("nome"));
+                    usuario.setEmail(request.getParameter("email"));
+                    usuario.setSenha(request.getParameter("senha"));
+                    usuario.getNivel().setId(Integer.parseInt(request.getParameter("nivel")));
 
-                    //Recebendo os parâmetros inseridos pelo usuário
-                    String nome = request.getParameter("mnome");
-                    String email = request.getParameter("memail");
-                    String senha = request.getParameter("msenha");
-                    int nivel = function.nivelUsuario((String) request.getParameter("mnivel"));
-
-                    //Instanciando o objeto para cadastro do usuário
-                    new UsuarioBO().cadastrar(new UsuarioDTO(nome, email, senha, nivel));
+                    // Instanciando o objeto para cadastro do usuário
+                    new UsuarioBo().cadastrar(usuario);
 
                     message.setType("success");
                     message.setMessage("Usuário cadastrado com sucesso!");
-
                 } catch (Exception e) {
-
                     message.setType("error");
                     message.setMessage(e.getMessage());
-                    e.printStackTrace();
-
                 }
 
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("cadastro.jsp").forward(request, response);
-
+                request.getRequestDispatcher("usuarioCadastro.jsp").forward(request, response);
                 break;
 
-            case 4: //Pesquisar Usuário
-
+            case 4: // Pesquisar Usuário
                 try {
+                    if (request.getParameter("search") != null) {
+                        UsuarioDto usuario = new UsuarioDto();
+                        usuario.setNome(request.getParameter("search"));
+                        usuario.setEmail(usuario.getNome());
 
-                    ArrayList<UsuarioDTO> list = null;
-                    String nome = "";
-                    String email = "";
-
-                    if (request.getParameter("msearch") != null) {
-                        nome = request.getParameter("msearch");
-                        email = request.getParameter("msearch");
+                        ArrayList<UsuarioDto> lista = new UsuarioBo().procurar(usuario);
+                        request.setAttribute("search", lista);
+                    } else {
+                        ArrayList<UsuarioDto> lista = new UsuarioBo().listar();
+                        request.setAttribute("search", lista);
                     }
-
-                    list = new UsuarioBO().pesquisar(new UsuarioDTO(nome, email));
-
-                    request.setAttribute("search", list);
-
                 } catch (NullPointerException e) {
-
                     message.setType("error");
                     message.setMessage("Ocorreu um erro ao tentar recuperar os atributos da pesquisa.");
                     request.setAttribute("message", message);
-                    e.printStackTrace();
-
                 } catch (Exception e) {
-
                     message.setType("error");
                     message.setMessage(e.getMessage());
                     request.setAttribute("message", message);
-                    e.printStackTrace();
-
                 }
 
                 request.getRequestDispatcher("usuarios.jsp").forward(request, response);
-
                 break;
 
-            case 5: //Alterar Usuário
-
+            case 5: // Alterar Usuário
                 try {
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    String nome = request.getParameter("mnome");
-                    String email = request.getParameter("memail");
-                    //String senha = request.getParameter("msenha");
-                    int nivel = function.nivelUsuario((String) request.getParameter("mnivel"));
+                    UsuarioDto usuario = new UsuarioDto();
+                    usuario.setId(Integer.parseInt(request.getParameter("id")));
+                    usuario.setNome(request.getParameter("nome"));
+                    usuario.setEmail(request.getParameter("email"));
+                    usuario.getNivel().setId(Integer.parseInt(request.getParameter("id")));
 
-                    UsuarioDTO usuario = new UsuarioBO().alterar(new UsuarioDTO(id, nome, email, nivel));
+                    UsuarioBo usuarioBo = new UsuarioBo();
+                    usuario = usuarioBo.alterar(usuario);
 
                     session.setAttribute("usuario", usuario);
-                    
+
                     message.setType("success");
                     message.setMessage("Usuário alterado com sucesso!");
-
                 } catch (Exception e) {
-
                     message.setType("error");
                     message.setMessage(e.getMessage());
-                    e.printStackTrace();
-
                 }
 
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("alterar_cadastro.jsp").forward(request, response);
-
+                request.getRequestDispatcher("usuarioAlterarCadastro.jsp").forward(request, response);
                 break;
 
-
-            case 6: //Excluir Usuário
-
+            case 6: // Excluir Usuário
                 try {
+                    UsuarioDto usuario = new UsuarioDto();
+                    usuario.setId(Integer.parseInt(request.getParameter("id")));
 
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    new UsuarioBO().excluir(new UsuarioDTO(id));
+                    UsuarioBo usuarioBo = new UsuarioBo();
+                    usuarioBo.excluir(usuario);
 
                     message.setType("success");
                     message.setMessage("Usuário excluído com sucesso!");
-
                 } catch (Exception e) {
-
                     message.setType("error");
                     message.setMessage(e.getMessage());
-                    e.printStackTrace();
-
                 }
 
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("usuarios.jsp").forward(request, response);
-
                 break;
 
-            case 7: //Recuperar dados a partir do ID do Usuário
-
+            case 7: // Recuperar dados a partir do ID do Usuário
                 try {
+                    UsuarioDto usuarioPesquisa = new UsuarioDto();
+                    usuarioPesquisa.setId(Integer.parseInt(request.getParameter("id")));
 
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    UsuarioDTO usuario = new UsuarioBO().pesquisarId(new UsuarioDTO(id));
-
-                    session.setAttribute("usuario", usuario);
-
+                    UsuarioBo usuarioBo = new UsuarioBo();
+                    ArrayList<UsuarioDto> usuarios = usuarioBo.procurar(usuarioPesquisa);
+                    for (UsuarioDto usuario : usuarios) {
+                        session.setAttribute("usuario", usuario);
+                        break;
+                    }
                 } catch (Exception e) {
-
                     message.setType("error");
                     message.setMessage(e.getMessage());
                     request.setAttribute("message", message);
-                    e.printStackTrace();
-
                 }
 
-                request.getRequestDispatcher("alterar_cadastro.jsp").forward(request, response);
-
+                request.getRequestDispatcher("usuarioAlterarCadastro.jsp").forward(request, response);
                 break;
 
             default:
-
         }
     }
 }

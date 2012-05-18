@@ -2,17 +2,8 @@ package br.upis.ltpiv.turma352.series_mix.session;
 
 public class Page {
 
-    //Classe criada para identificar a página na sessão da aplicação
     int id;
     String title;
-
-    public Page() {
-    }
-
-    public Page(int id, String title) {
-        this.id = id;
-        this.title = title;
-    }
 
     public int getId() {
         return id;

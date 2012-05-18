@@ -1,7 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@ page import="br.upis.ltpiv.turma352.series_mix.model.vo.MessageVO" %>
 <%@ page import="br.upis.ltpiv.turma352.series_mix.session.Page" %>
-<% session.setAttribute("page", new Page(1, "Home"));%>
+<%
+    Page pagina = new Page();
+    pagina.setId(1);
+    pagina.setTitle("Home");
+    session.setAttribute("page", pagina);
+%>
 <jsp:include page="/WEB-INF/layout/top.jsp" />
 <div id="content"> 
     <div id="main">
