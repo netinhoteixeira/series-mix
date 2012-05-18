@@ -1,9 +1,14 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="error.jsp" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" %>
 <%@ page import="br.upis.ltpiv.turma352.series_mix.model.vo.MessageVO" %>
-<%@ page import="br.upis.ltpiv.turma352.series_mix.model.dto.UsuarioDTO" %>
+<%@ page import="br.upis.ltpiv.turma352.series_mix.model.dto.UsuarioDto" %>
 <%@ page import="br.upis.ltpiv.turma352.series_mix.session.Page" %>
 <%@ page import="java.util.ArrayList" %>
-<% session.setAttribute("page", new Page(8, "Usuários"));%>
+<%
+    Page pagina = new Page();
+    pagina.setId(8);
+    pagina.setTitle("Usuários");
+    session.setAttribute("page", pagina);
+%>
 <jsp:include page="/WEB-INF/layout/top.jsp" />
 <div id="content">
     <div id="main">
@@ -13,12 +18,12 @@
             <div class="search-text">
                 <form action="controller" method="post">
                     <div class="search-inputs">
-                        <input class="text" id="msearch" type="text" name="msearch" />
+                        <input class="text" id="msearch" type="text" name="search" />
                     </div>
                     <div class="button-position">
                         <input type="hidden" value="4" name="op" />
                         <input class="button" type="submit" value="Pesquisar" />
-                        <a href="cadastro.jsp"><button>Cadastrar</button></a>
+                        <button onclick="window.location.href='usuarioCadastro.jsp';return false;">Cadastrar</button>
                     </div>
                 </form>
             </div>
@@ -35,9 +40,9 @@
             </div>
             <% }%>
 
-            <%  // Recebendo a lista de usuários cadastrados
-                if ((request.getAttribute("search") != null) && (request.getAttribute("search") instanceof ArrayList)) {
-                    ArrayList<UsuarioDTO> list = (ArrayList<UsuarioDTO>) request.getAttribute("search");
+            <%
+                // Recebendo a lista de usuários cadastrados
+                ArrayList<UsuarioDto> lista = (ArrayList<UsuarioDto>) request.getAttribute("search");
             %>
             <table class="search-result">
                 <tbody>
@@ -50,20 +55,19 @@
                     </tr>
 
                     <% // Percorrendo a lista recebida
-                        for (int i = 0; i < list.size(); i++) {
-                            UsuarioDTO usuario = (UsuarioDTO) list.get(i);
-                            pageContext.setAttribute("usuario", usuario);
+                        for (int i = 0; i < lista.size(); i++) {
+                            UsuarioDto usuario = (UsuarioDto) lista.get(i);
                     %>
                     <tr>
-                        <td>${usuario.codigo}</td>
-                        <td><a href="controller?op=7&id=${usuario.codigo}">${usuario.nome}</a></td>
-                        <td>${usuario.email}</td>
-                        <td>${usuario.nmNivel}</td>
+                        <td><%= usuario.getId()%></td>
+                        <td><a href="controller?op=7&id=<%= usuario.getId()%>"><%= usuario.getNome()%></a></td>
+                        <td><%= usuario.getEmail()%></td>
+                        <td><%= usuario.getNivel().getNome()%></td>
                         <td>
-                            <a href="controller?op=7&id=${usuario.codigo}">
+                            <a href="controller?op=7&id=<%= usuario.getId()%>">
                                 <img class="edit" src="media/image/frame/icon_edit.png" alt="Alterar" title="Alterar"/>
                             </a>
-                            <a href="controller?op=6&id=${usuario.codigo}" onclick="return confirm('Tem certeza que deseja excluir ${usuario.nome}?')">
+                            <a href="controller?op=6&id=<%= usuario.getId()%>" onclick="return confirm('Tem certeza que deseja excluir <%= usuario.getNome()%>?')">
                                 <img class="delete" src="media/image/frame/icon_delete.png" alt="Excluir" title="Excluir"/>
                             </a>
                         </td>
@@ -88,7 +92,6 @@
                     <span><a href="#">Última</a></span>
                 </div>
             </div>
-            <% }%>
 
         </div>
     </div>

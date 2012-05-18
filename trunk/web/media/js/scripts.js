@@ -99,47 +99,47 @@ $(document).ready(function(){
             });
         },
         rules:{
-            mnome:{
+            nome:{
                 required: true,
                 minlength: 3
             },
-            memail:{
+            email:{
                 required: true,
                 email: true
             },
-            msenha:{
+            senha:{
                 required: true
             },
-            msenha2:{
+            senha2:{
                 required: true,
-                equalTo: "#msenha"
+                equalTo: "#senha"
             },
             mnivel: "required",
             mtermos: "required"
         },
         messages:{
-            mnome:{
+            nome:{
                 required: "O nome é obrigatório!",
                 minlength: "O nome deve conter no mínimo 3 caracteres."
             },
-            memail: {
+            email: {
                 required: "O e-mail é obrigatório.",
                 email: "Informe um e-mail válido."
             },
-            msenha: {
+            senha: {
                 required: "A senha é obrigatória."
             },
-            msenha2:{
+            senha2:{
                 required: "A confirmação da senha é obrigatória.",
                 equalTo: "As senhas não conferem."
             },
-            mnivel: "Informe o nível de acesso.",
-            mtermos: "Para se cadastrar, você deve aceitar os termos de uso."
+            nivel: "Informe o nível de acesso.",
+            termos: "Para se cadastrar, você deve aceitar os termos de uso."
         },
         errorPlacement: function(error, element) {
-            if (element.attr("name") == "mtermos")
+            if (element.attr("name") == "termos")
                 error.insertAfter(".box-check label");
-            else if (element.attr("name") == "mnivel")
+            else if (element.attr("name") == "nivel")
                 error.insertAfter("select");
             else
                 error.insertAfter(element);

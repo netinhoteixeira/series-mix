@@ -2,8 +2,6 @@ package br.upis.ltpiv.turma352.series_mix.exception.database;
 
 public class DeleteDatabaseException extends DatabaseException {
 
-    private static final long serialVersionUID = 1L;
-
     public DeleteDatabaseException(String msg) {
         super(msg);
     }
