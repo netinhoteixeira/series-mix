@@ -79,7 +79,6 @@
 
             <div class="search-details">
                 <div class="button-position">
-                    <a href="#"><button>Excluir</button></a>
                     <a href="usuarioCadastro.jsp"><button>Cadastrar</button></a>
                 </div>
 
