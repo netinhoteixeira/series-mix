@@ -1,4 +1,4 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+﻿SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
@@ -156,8 +156,4 @@ COMMIT;
 -- Data for table `series_mix`.`Usuario`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `series_mix`;
-INSERT INTO `series_mix`.`Usuario` (`id`, `Nome`, `Email`, `Senha`, `Nivel`, `Cadastro`) VALUES (1, 'Francisco Ernesto Teixeira', 'fco.ernesto@gmail.com', '12345', 1, '2012-04-23');
-INSERT INTO `series_mix`.`Usuario` (`id`, `Nome`, `Email`, `Senha`, `Nivel`, `Cadastro`) VALUES (2, 'Jady Pâmella Barbacena', 'jadypbs@gmail.com', '12345', 1, '2012-04-23');
-
-COMMIT;
+USE `series_mix`;INSERT INTO `usuario` (`id`, `Nome`, `Email`, `Senha`, `Nivel`, `Cadastro`) VALUES (2, 'Francisco Ernesto', 'fco.ernesto@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2012-04-23'), (1, 'Jady PÃ¢mella', 'jadypbs@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2012-04-23'), (3, 'Aline Damasceno', 'aline473@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2012-05-19');COMMIT;

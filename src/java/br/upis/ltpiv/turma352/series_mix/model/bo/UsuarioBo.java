@@ -19,7 +19,7 @@ public class UsuarioBo {
         return usuarioDao.acessar(usuario);
     }
 
-    public void cadastrar(UsuarioDto usuario) throws DatabaseException, EmailInvalidoException {
+    public void cadastrar(UsuarioDto usuario) throws DatabaseException, ValidationException {
         usuarioDao.cadastrar(usuario);
     }
 
@@ -27,7 +27,7 @@ public class UsuarioBo {
         return usuarioDao.procurar(usuario);
     }
 
-    public UsuarioDto alterar(UsuarioDto usuario) throws DatabaseException, EmailInvalidoException {
+    public UsuarioDto alterar(UsuarioDto usuario) throws DatabaseException, ValidationException {
         return usuarioDao.alterar(usuario);
     }
 
