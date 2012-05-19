@@ -10,7 +10,7 @@ public class DatabaseDao {
     private String url = "jdbc:mysql://localhost/";
     private String banco = "series_mix";
     private String usuario = "root";
-    private String senha = "123456";
+    private String senha = "";
     private String driver = "com.mysql.jdbc.Driver";
 
     public Connection getConnection(Connection connection) throws DatabaseException {

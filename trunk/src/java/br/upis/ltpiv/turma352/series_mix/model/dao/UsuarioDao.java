@@ -58,8 +58,8 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public void cadastrar(UsuarioDto usuario) throws DatabaseException, EmailInvalidoException {
-        this.sql = "SELECT COUNT(*) FROM usuario WHERE (Nome = ?) AND (Email = ?)";
+    public void cadastrar(UsuarioDto usuario) throws DatabaseException, ValidationException {
+        this.sql = "SELECT COUNT(*) FROM usuario WHERE (Nome = ?) OR (Email = ?)";
 
         try {
             this.ps = this.con.prepareStatement(sql);
@@ -159,13 +159,14 @@ public class UsuarioDao {
         return usuarios;
     }
 
-    public UsuarioDto alterar(UsuarioDto usuario) throws DatabaseException, EmailInvalidoException {
-        this.sql = "SELECT COUNT(*) FROM usuario WHERE (Email = ?) AND (id <> ?)";
+    public UsuarioDto alterar(UsuarioDto usuario) throws DatabaseException, ValidationException {
+        this.sql = "SELECT COUNT(*) FROM usuario WHERE ((Nome = ?) OR (Email = ?)) AND (id <> ?)";
 
         try {
             this.ps = this.con.prepareStatement(sql);
-            this.ps.setString(1, usuario.getEmail());
-            this.ps.setInt(2, usuario.getId());
+            this.ps.setString(1, usuario.getNome());
+            this.ps.setString(2, usuario.getEmail());
+            this.ps.setInt(3, usuario.getId());
 
             this.res = this.ps.executeQuery();
             res.next();
@@ -181,7 +182,7 @@ public class UsuarioDao {
 
                 this.ps.execute();
             } else {
-                throw new EmailInvalidoException("E-mail já cadastrado.");
+                throw new EmailInvalidoException("E-mail ou nome de usuário já cadastrado.");
             }
         } catch (SQLException e) {
             throw new UpdateDatabaseException("Não foi possível alterar o usuário.");

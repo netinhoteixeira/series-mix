@@ -85,7 +85,7 @@
                         <ul>
                             <li><a href="#">Minha Conta</a></li>
                             <li><a href="controller?op=4">Usuários</a></li>
-                            <li><a href="series.jsp">Séries</a></li>
+                            <li><a href="#">Séries</a></li>
                             <li><a href="#">Temporadas</a></li>
                             <li><a href="#">Episódios</a></li>
                             <li><a href="#">Comentários</a></li> 

@@ -114,8 +114,8 @@ $(document).ready(function(){
                 required: true,
                 equalTo: "#senha"
             },
-            mnivel: "required",
-            mtermos: "required"
+            nivel: "required",
+            termos: "required"
         },
         messages:{
             nome:{
