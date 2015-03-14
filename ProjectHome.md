@@ -1,0 +1,1 @@
+Projeto desenvolvido somente com fins acadêmicos para a matéria de LTP-IV de Sistemas de Informações da UPIS.
